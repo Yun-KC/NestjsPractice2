@@ -8,13 +8,12 @@ export class UsersService {
 
   async createUser(name: string, email: string, password: string) {
     await this.checkUserExists(email);
-
     const signupVerifyToken = uuid.v1();
     await this.saveUser(name, email, password, signupVerifyToken);
   }
 
   private checkUserExists(emil: string) {
-    return false; // TODO: DB 연동 후 구현
+    return false; // TODO: DB 연동 후 구현, 유효하지 않다면 예외 발생
   }
 
   private saveUser(
@@ -48,7 +47,7 @@ export class UsersService {
     return 'Method not implemented';
   }
 
-  async getUserInfo(userId: string): Promise<string> {
+  async getUserInfo(userId: string): Promise<UserInfo> {
     // TODO
     // 1. userId를 가진 유저가 존재하는지 DB에서 확인하고 없다면 에러처리
     // 2. 조회된 데이터를 UserInfo타입으로 응답
