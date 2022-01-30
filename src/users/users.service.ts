@@ -9,6 +9,7 @@ export class UsersService {
   async createUser(name: string, email: string, password: string) {
     await this.checkUserExists(email);
     const signupVerifyToken = uuid.v1();
+    await this.sendMemberJoinEmail(email, signupVerifyToken); // 인증메일 발송!
     await this.saveUser(name, email, password, signupVerifyToken);
   }
 
